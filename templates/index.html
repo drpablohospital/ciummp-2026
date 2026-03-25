@@ -89,10 +89,10 @@
     // Carrusel (código existente)
     const carouselImages = [];
     for (let i = 1; i <= 10; i++) {
-        carouselImages.push(`/static/images/carrusel/${i}.jpg`);
+        carouselImages.push(`/static/images/carrusel/${i}.png`);
     }
     if (carouselImages.length === 0) {
-        carouselImages.push('/static/images/cartel.webp');
+        carouselImages.push('/static/images/cartel.png');
     }
     let currentIndex = 0;
     const imgElement = document.querySelector('.carousel-images img');
