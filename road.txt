@@ -1,0 +1,38 @@
+1. Technology Stack:
+  Backend: Python 3.10+, Flask
+  Database: SQLite (can be replaced with PostgreSQL for production)
+  Payments: Stripe API (Checkout Sessions)
+  QR Code: qrcode + Pillow
+  PDF Generation: reportlab
+  Frontend: HTML5, CSS (Tailwind CSS CDN), minimal JavaScript
+  Deployment: Render (web service with Gunicorn)
+
+2. Project Structure
+text
+clinical_care_experience/
+├── app.py                # Main Flask application
+├── config.py             # Configuration (Stripe keys, database URI)
+├── models.py             # SQLAlchemy models
+├── forms.py              # WTForms for registration (optional)
+├── requirements.txt      # Python dependencies
+├── static/
+│   ├── css/              # Custom CSS (or we'll use Tailwind CDN)
+│   ├── images/           # Placeholder graphics (replace with yours)
+│   └── qrcodes/          # Generated QR images (will be created)
+├── templates/
+│   ├── base.html         # Base template with navbar
+│   ├── index.html        # Landing page
+│   ├── purchase.html     # Funnel / ticket selection + registration form
+│   ├── success.html      # After payment – show QR code & certificate link
+│   ├── cancel.html       # Payment cancelled
+│   ├── program.html      # Agenda / schedule
+│   ├── newsletter.html   # (Optional) separate page, but we'll embed a form
+│   └── certificate.html  # View for generated certificate (or PDF download)
+└── instance/             # SQLite database will be created here
+
+/ / /
+python -m venv venv
+venv\Scripts\activate.bat
+.\venv\Scripts\activate
+iniciar ngrok
+luego python.py

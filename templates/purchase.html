@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto px-4 py-12">
+    <div class="glass-card">
+        <h1 class="text-3xl font-bold mb-8 text-center">Registro y selección de entradas</h1>
+        <form method="POST" action="/purchase" class="space-y-6">
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Nombre completo</label>
+                <input type="text" name="name" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Correo electrónico</label>
+                <input type="email" name="email" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Perfil</label>
+                <select name="role" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                    <option value="specialist">Especialista</option>
+                    <option value="student">Estudiante</option>
+                    <option value="nurse">Enfermero/a</option>
+                    <option value="physio">Fisioterapeuta</option>
+                </select>
+            </div>
+
+            <!-- Días a los que asiste -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">¿A qué días asistirás?</label>
+                <div class="space-y-2">
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" name="day1" value="1" id="day1Checkbox">
+                        <span class="ml-2">Día 1 (Conferencias)</span>
+                    </label>
+                    <div id="day1Options" class="ml-6 mt-1 space-x-4" style="display: none;">
+                        <label><input type="radio" name="day1_modality" value="presencial"> Presencial</label>
+                        <label><input type="radio" name="day1_modality" value="virtual"> Virtual</label>
+                    </div>
+                    <br>
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" name="day2" value="1">
+                        <span class="ml-2">Día 2 (Talleres presenciales)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Curso adicional -->
+            <div>
+                <label class="inline-flex items-center">
+                    <input type="checkbox" name="course" value="course">
+                    <span class="ml-2">Curso de Fisioterapia (adicional, $6 MXN)</span>
+                </label>
+            </div>
+
+            <div class="pt-4">
+                <button type="submit" class="btn-primary w-full text-center">Continuar al pago</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    const day1Checkbox = document.getElementById('day1Checkbox');
+    const day1Options = document.getElementById('day1Options');
+    day1Checkbox.addEventListener('change', function() {
+        if (this.checked) {
+            day1Options.style.display = 'block';
+        } else {
+            day1Options.style.display = 'none';
+        }
+    });
+</script>
+{% endblock %}

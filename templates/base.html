@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinical Care Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-text-primary: #1e2a3e;
+            --color-text-secondary: #4a5b6e;
+            --color-border-tertiary: #e2e8f0;
+            --color-primary: #7f326e;
+            --color-primary-dark: #42134e;
+            --color-secondary: #c8d4a0;
+            --color-accent: #e75180;
+            --color-purple-light: #b28cd1;
+            --color-purple-dark: #a463a5;
+            --color-pink: #bf437b;
+            --color-gray: #ab869f;
+        }
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+        a {
+            transition: all 0.2s ease;
+        }
+        .glass-card {
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+        }
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            background-color: var(--color-primary-dark);
+            transform: translateY(-1px);
+        }
+        .btn-outline {
+            border: 2px solid var(--color-primary);
+            color: var(--color-primary);
+            background-color: transparent;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .btn-outline:hover {
+            background-color: var(--color-primary);
+            color: white;
+        }
+        .nav-link {
+            color: #4b5563;
+            transition: color 0.2s;
+            font-weight: 500;
+        }
+        .nav-link:hover {
+            color: var(--color-primary);
+        }
+        /* Estilos del modal */
+        .modal {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.85);
+            z-index: 1000;
+        }
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content img {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        .close-modal {
+            margin-top: 1rem;
+            background-color: var(--color-primary);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.2s;
+            font-size: 1.1rem;
+        }
+        .close-modal:hover {
+            background-color: var(--color-primary-dark);
+        }
+        /* Botón flotante de chat */
+        .chat-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: var(--color-primary);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.2s;
+            z-index: 1000;
+        }
+        .chat-button:hover {
+            background-color: var(--color-primary-dark);
+            transform: scale(1.05);
+        }
+        /* Modal del chat */
+        .chat-modal {
+            display: none;
+            position: fixed;
+            bottom: 5rem;
+            right: 2rem;
+            width: 320px;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2);
+            z-index: 1001;
+            padding: 1rem;
+        }
+        .chat-modal.active {
+            display: block;
+        }
+        .chat-modal textarea {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+        }
+        .chat-modal input {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+        .modal-overlay.active {
+            display: block;
+        }
+    </style>
+    {% block head %}{% endblock %}
+</head>
+<body style="background-image: url('{{ background_image }}');">
+    <nav class="bg-white/90 backdrop-blur-sm shadow-sm sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center space-x-2">
+                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Clinical Care Experience" class="h-12 w-auto">
+                </div>
+                <div class="flex space-x-6 items-center">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/info" class="nav-link">Info</a>
+                    <a href="/program" class="nav-link">Programa</a>
+                    <a href="/purchase" class="btn-primary text-sm">Registrarse</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="max-w-7xl mx-auto px-4 py-4">
+                    {% for category, message in messages %}
+                        <div class="p-4 mb-4 rounded-md {% if category == 'success' %}bg-green-100 text-green-700{% elif category == 'danger' %}bg-red-100 text-red-700{% else %}bg-blue-100 text-blue-700{% endif %}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-white/80 backdrop-blur-sm border-t mt-12">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm">
+            <div class="flex justify-center items-center space-x-4 mb-2">
+                <img src="{{ url_for('static', filename='images/logo_ss.png') }}" alt="Sponsor" class="h-8 w-auto">
+                <span>|</span>
+                <span>© 2026 Clinical Care Experience. Todos los derechos reservados.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón flotante de chat -->
+    <div class="chat-button" id="chatButton">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+        </svg>
+    </div>
+    <div id="chatModal" class="chat-modal">
+        <h3 class="font-bold text-lg mb-2">Contáctanos</h3>
+        <form id="contactForm" action="/contact" method="POST">
+            <input type="text" name="nombre" placeholder="Nombre completo" required>
+            <input type="tel" name="telefono" placeholder="Teléfono">
+            <input type="email" name="email" placeholder="Correo electrónico" required>
+            <textarea name="mensaje" rows="3" placeholder="Escribe tu mensaje..." required></textarea>
+            <button type="submit" class="btn-primary w-full mt-2">Enviar</button>
+        </form>
+    </div>
+    <div id="modalOverlay" class="modal-overlay"></div>
+
+    <script>
+        const chatButton = document.getElementById('chatButton');
+        const chatModal = document.getElementById('chatModal');
+        const modalOverlay = document.getElementById('modalOverlay');
+        chatButton.addEventListener('click', () => {
+            chatModal.classList.toggle('active');
+            modalOverlay.classList.toggle('active');
+        });
+        modalOverlay.addEventListener('click', () => {
+            chatModal.classList.remove('active');
+            modalOverlay.classList.remove('active');
+        });
+    </script>
+</body>
+</html>

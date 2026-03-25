@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto px-4 py-12 text-center">
+    <h1 class="text-3xl font-bold text-green-600 mb-4">¡Pago exitoso!</h1>
+    <p class="text-gray-600 mb-6">Gracias por registrarte en Critical Care Experience.</p>
+
+    {% if qr_path %}
+        <div class="mb-6">
+            <h2 class="text-xl font-semibold mb-2">Tu credencial digital</h2>
+            <img src="{{ url_for('static', filename=qr_path.replace('static/', '')) }}" alt="Código QR" class="mx-auto w-48 h-48">
+            <p class="text-sm text-gray-500 mt-2">Muestra este código QR en la entrada.</p>
+        </div>
+        <div>
+            <a href="/certificate/{{ registration.id }}" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700">Descargar certificado</a>
+        </div>
+    {% else %}
+        <div class="bg-yellow-50 border border-yellow-200 text-yellow-800 p-4 rounded-md">
+            <p>Tu pago se está confirmando. El código QR aparecerá aquí en breve. Actualiza la página o revisa tu correo.</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

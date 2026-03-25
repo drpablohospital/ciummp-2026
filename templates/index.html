@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Modal con cartel -->
+<div id="cartelModal" class="modal">
+    <div class="modal-content">
+        <img src="{{ url_for('static', filename='images/cartel.png') }}" alt="Cartel del evento">
+        <button id="closeModalBtn" class="close-modal">Ver más</button>
+    </div>
+</div>
+
+<!-- Contenido principal (oculto hasta cerrar el modal) -->
+<div id="mainContent" style="display: none;">
+    <div class="max-w-7xl mx-auto px-4 py-12">
+        <div class="glass-card">
+            <!-- Logo grande arriba -->
+            <div class="flex justify-center mb-8">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Clinical Care Experience" class="h-24 md:h-32 w-auto">
+            </div>
+
+            <!-- Dos columnas: izquierda texto, derecha carrusel -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Columna izquierda: texto -->
+                <div class="space-y-6">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900">
+                        Clinical Care Experience
+                    </h1>
+                    <p class="text-lg italic text-gray-700">
+                        "La atención crítica de la paciente obstétrica no es solo un desafío médico, es una responsabilidad social. Cada segundo cuenta."
+                    </p>
+                    <div class="text-gray-600 space-y-4">
+                        <p>
+                            El <strong>Clinical Care Experience</strong> reúne a los más destacados especialistas nacionales en medicina crítica, ginecología y obstetricia. En esta segunda edición, nos enfocamos en la <strong>urgencia obstétrica</strong>, un pilar fundamental para reducir la mortalidad materna en México.
+                        </p>
+                        <p>
+                            Con ponentes de instituciones como INPer, IMIEM, UAEMéx y Hospital General de San Juan del Río, abordaremos temas clave: preeclampsia, hemorragia obstétrica, sepsis, tromboembolia, entre otros.
+                        </p>
+                        <p class="font-semibold">
+                            Invitamos a médicos especialistas, residentes, enfermeras y fisioterapeutas a formar parte de este espacio de actualización y networking.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Columna derecha: carrusel -->
+                <div>
+                    <div id="carousel" class="relative w-full h-80 md:h-96 overflow-hidden rounded-lg shadow-lg">
+                        <div class="carousel-images relative w-full h-full">
+                            <img src="" alt="Carrusel" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500">
+                        </div>
+                        <button id="prevBtn" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70">❮</button>
+                        <button id="nextBtn" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70">❯</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botones abajo -->
+            <div class="flex justify-center space-x-4 mt-8">
+                <a href="/purchase" class="btn-primary">Regístrate ahora</a>
+                <a href="/program" class="btn-outline">Ver programa</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter Signup -->
+    <div class="max-w-7xl mx-auto px-4 py-12">
+        <div class="glass-card text-center">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Mantente informado</h2>
+            <p class="text-gray-600 mb-6">Suscríbete para recibir novedades y actualizaciones del programa.</p>
+            <form action="/subscribe" method="POST" class="max-w-md mx-auto flex gap-2">
+                <input type="email" name="email" required placeholder="Tu correo" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                <button type="submit" class="btn-primary">Suscribirse</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('cartelModal');
+        const closeBtn = document.getElementById('closeModalBtn');
+        const mainContent = document.getElementById('mainContent');
+
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+            mainContent.style.display = 'block';
+        });
+    });
+
+    // Carrusel (código existente)
+    const carouselImages = [];
+    for (let i = 1; i <= 10; i++) {
+        carouselImages.push(`/static/images/carrusel/${i}.jpg`);
+    }
+    if (carouselImages.length === 0) {
+        carouselImages.push('/static/images/cartel.png');
+    }
+    let currentIndex = 0;
+    const imgElement = document.querySelector('.carousel-images img');
+    function updateImage() {
+        imgElement.src = carouselImages[currentIndex];
+        imgElement.classList.remove('opacity-0');
+        setTimeout(() => imgElement.classList.add('opacity-100'), 10);
+    }
+    updateImage();
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    if (prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + carouselImages.length) % carouselImages.length;
+            updateImage();
+        });
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % carouselImages.length;
+            updateImage();
+        });
+    }
+</script>
+{% endblock %}

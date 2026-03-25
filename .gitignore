@@ -1,0 +1,41 @@
+# Entorno virtual
+venv/
+env/
+.env
+.flaskenv
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+dist/
+build/
+
+# Base de datos local (SQLite)
+*.db
+*.sqlite
+*.sqlite3
+
+# Archivos generados por la aplicación
+static/qrcodes/
+instance/
+
+# Archivos de configuración local
+config.local.py
+
+# Variables de entorno
+.env
+.env.local
+
+# Archivos de editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

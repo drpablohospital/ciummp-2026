@@ -1,0 +1,362 @@
+{% extends "base.html" %}
+
+{% block head %}
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;500;600;700&display=swap');
+
+  :root {
+    --color-text-primary: #1e2a3e;
+    --color-text-secondary: #4a5b6e;
+    --color-border-tertiary: #e2e8f0;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+  .prog{font-family:'Nunito',sans-serif;padding:1.5rem 0;max-width:780px;margin:0 auto;}
+  .prog-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:2px solid #D85A30;gap:1rem;}
+  .brand-left .cc{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--color-text-primary);letter-spacing:2px;line-height:1;}
+  .brand-left .exp{font-family:'Bebas Neue',sans-serif;font-size:42px;color:#D85A30;letter-spacing:2px;line-height:1;}
+  .brand-left .ed{font-size:10px;font-weight:700;color:var(--color-text-secondary);letter-spacing:3px;text-transform:uppercase;margin-top:3px;}
+  .brand-right{text-align:right;}
+  .brand-right .fecha{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--color-text-primary);letter-spacing:1px;line-height:1.3;}
+  .brand-right .sede{font-size:11px;color:var(--color-text-secondary);font-weight:600;margin-top:4px;line-height:1.5;}
+  .prog-title{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:5px;text-align:center;color:var(--color-text-primary);margin-bottom:1.25rem;}
+
+  /* Estilos para pestañas */
+  .tab-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .tab-btn {
+    background: #e2e8f0;
+    color: #1e2a3e;
+    padding: 0.5rem 2rem;
+    border-radius: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .tab-btn.active {
+    background: #D85A30;
+    color: white;
+  }
+  .tab-pane {
+    display: none;
+  }
+  .tab-pane.active {
+    display: block;
+  }
+
+  /* Estilos de filas existentes */
+  .row{display:grid;grid-template-columns:78px 1fr;border-bottom:0.5px solid var(--color-border-tertiary);}
+  .row:last-child{border-bottom:none;}
+  .time-col{padding:10px 12px 10px 0;display:flex;flex-direction:column;align-items:flex-end;justify-content:flex-start;border-right:2px solid var(--color-border-tertiary);}
+  .time-start{font-size:12px;font-weight:700;color:var(--color-text-primary);}
+  .time-end{font-size:10px;color:var(--color-text-secondary);margin-top:1px;}
+  .content-col{padding:10px 0 10px 14px;}
+  .conf-tema{font-size:13px;font-weight:700;color:var(--color-text-primary);line-height:1.3;margin-bottom:3px;}
+  .conf-ponente{font-size:12px;color:var(--color-text-secondary);}
+  .conf-inst{font-size:11px;color:var(--color-text-secondary);opacity:0.75;}
+  .tag{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;margin-bottom:5px;letter-spacing:0.5px;text-transform:uppercase;}
+  .tag-conf{background:#FAECE7;color:#712B13;}
+  .tag-break{background:#E1F5EE;color:#085041;}
+  .tag-comida{background:#E6F1FB;color:#0C447C;}
+  .tag-especial{background:#EEEDFE;color:#3C3489;}
+  .row-break .time-col{border-right-color:#1D9E75;}
+  .row-comida .time-col{border-right-color:#378ADD;}
+  .row-especial .time-col{border-right-color:#7F77DD;}
+  .special-content{display:flex;align-items:center;gap:10px;}
+  .special-label{font-size:14px;font-weight:700;color:var(--color-text-primary);}
+  .special-sub{font-size:11px;color:var(--color-text-secondary);}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 py-12">
+    <div class="glass-card">
+        <div class="prog">
+            <div class="prog-header">
+                <div class="brand-left">
+                    <div class="cc">Critical Care</div>
+                    <div class="exp">Experience</div>
+                    <div class="ed">2.ª edición · Obstetricia crítica</div>
+                </div>
+                <div class="brand-right">
+                    <div class="fecha">1 y 2 de mayo 2026</div>
+                    <div class="sede">Hospital General de San Juan del Río<br>Querétaro</div>
+                </div>
+            </div>
+
+            <div class="prog-title">P R O G R A M A</div>
+
+            <!-- Pestañas -->
+            <div class="tab-container">
+                <div class="tab-btn active" data-tab="day1">Día 1 – Conferencias</div>
+                <div class="tab-btn" data-tab="day2">Día 2 – Talleres</div>
+            </div>
+
+            <!-- Día 1 (conferencias) - TODO EL CONTENIDO ORIGINAL -->
+            <div id="day1" class="tab-pane active">
+                <!-- Aquí va todo el contenido que ya tenías en el programa -->
+                <!-- Incluir todas las filas de conferencias (las que ya tienes en el archivo actual) -->
+                <!-- Voy a copiar el bloque completo de tu archivo actual desde el primer <div class="row"> hasta el último -->
+                <!-- NOTA: asegúrate de que todas las filas estén aquí -->
+                <div class="row">
+                    <div class="time-col"><span class="time-start">08:30</span><span class="time-end">08:55</span></div>
+                    <div class="content-col">
+                        <div class="tag tag-conf">Conferencia 1</div>
+                        <div class="conf-tema">Código Mater: cuando cada segundo salva una vida</div>
+                        <div class="conf-ponente">Dr. Enrique Adalberto Adaya Leythe</div>
+                        <div class="conf-inst">Ginecología y Obstetricia · IMIEM / UAEMéx</div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="time-col"><span class="time-start">08:55</span><span class="time-end">09:20</span></div>
+                    <div class="content-col">
+                        <div class="tag tag-conf">Conferencia 2</div>
+                        <div class="conf-tema">Miocardiopatía en la paciente obstétrica</div>
+                        <div class="conf-ponente">Dra. Laura Belmont Rojo</div>
+                        <div class="conf-inst">Cardiología · Instituto Nacional de Perinatología</div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="time-col"><span class="time-start">09:20</span><span class="time-end">09:45</span></div>
+                    <div class="content-col">
+                        <div class="tag tag-conf">Conferencia 3</div>
+                        <div class="conf-tema">Complicaciones hepáticas en el embarazo</div>
+                        <div class="conf-ponente">Dr. José Antonio Hernández Pacheco</div>
+                        <div class="conf-inst">Medicina Interna y Crítica · UNAM / IPN</div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="time-col"><span class="time-start">09:45</span><span class="time-end">10:10</span></div>
+                    <div class="content-col">
+                        <div class="tag tag-conf">Conferencia 4</div>
+                        <div class="conf-tema">Preeclampsia: la tormenta silenciosa que hay que detener</div>
+                        <div class="conf-ponente">Dr. Christian Herrera Venegas</div>
+                        <div class="conf-inst">Ginecología y Obstetricia · Medicina Crítica Obstétrica · UAdeC / UAEMéx</div>
+                    </div>
+                </div>
+
+                <div class="row row-especial">
+                    <div class="time-col"><span class="time-start">10:10</span><span class="time-end">11:10</span></div>
+                    <div class="content-col">
+                        <div class="special-content">
+                            <div>
+                                <div class="tag tag-especial">Inauguración + Coffee break</div>
+                                <div class="special-label">Ceremonia de inauguración y receso</div>
+                                <div class="special-sub">60 min · Inauguración oficial + café</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="time-col"><span class="time-start">11:10</span><span class="time-end">11:35</span></div>
+                    <div class="content-col">
+                        <div class="tag tag-conf">Conferencia 5</div>
+                        <div class="conf-tema">SDRA y ventilación mecánica en el embarazo</div>
+                        <div class="conf-ponente">Dr. Ernesto Deloya Tomás</div>
+                        <div class="conf-inst">Medicina Crítica · Hospital General San Juan del Río</div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="time-col"><span class="time-start">11:35</span><span class="time-end">12:00</span></div>
+                    <div class="content-col">
+                        <div class="tag tag-conf">Conferencia 6</div>
+                        <div class="conf-tema">Enfoque quirúrgico de la hemorragia obstétrica</div>
+                        <div class="conf-ponente">Dr. Gonzalo Pérez Barrera</div>
+                        <div class="conf-inst">Ginecología · Hospital General San Juan del Río</div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="time-col"><span class="time-start">12:00</span><span class="time-end">12:25</span></div>
+                    <div class="content-col">
+                        <div class="tag tag-conf">Conferencia 7</div>
+                        <div class="conf-tema">Tromboembolia pulmonar en el embarazo</div>
+                        <div class="conf-ponente">Dr. Freddy Mendoza Hernández</div>
+                        <div class="conf-inst">Ginecología y Obstetricia · Medicina Crítica Obstétrica · UAEMéx</div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="time-col"><span class="time-start">12:25</span><span class="time-end">12:50</span></div>
+                    <div class="content-col">
+                        <div class="tag tag-conf">Conferencia 8</div>
+                        <div class="conf-tema">Sepsis en el embarazo</div>
+                        <div class="conf-ponente">Dr. Rafael Reyes Monge</div>
+                        <div class="conf-inst">Medicina Crítica · Hospital General San Juan del Río</div>
+                    </div>
+                </div>
+
+                <div class="row row-comida">
+                    <div class="time-col"><span class="time-start">12:50</span><span class="time-end">14:50</span></div>
+                    <div class="content-col">
+                        <div class="special-content">
+                            <div>
+                                <div class="tag tag-comida">Comida</div>
+                                <div class="special-label">Receso para comida</div>
+                                <div class="special-sub">2 horas</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="time-col"><span class="time-start">14:50</span><span class="time-end">15:15</span></div>
+                    <div class="content-col">
+                        <div class="tag tag-conf">Conferencia 9</div>
+                        <div class="conf-tema">Embolia de líquido amniótico</div>
+                        <div class="conf-ponente">Dr. Miguel Ángel Nares Torices</div>
+                        <div class="conf-inst">Medicina Crítica Obstétrica · Jefe UCI Adulto INPer</div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="time-col"><span class="time-start">15:15</span><span class="time-end">15:40</span></div>
+                    <div class="content-col">
+                        <div class="tag tag-conf">Conferencia 10</div>
+                        <div class="conf-tema">Trombosis venosa cerebral en el embarazo</div>
+                        <div class="conf-ponente">Dr. Orlando Rubén Pérez Nieto</div>
+                        <div class="conf-inst">Medicina Crítica · UCI Hospital General San Juan del Río</div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="time-col"><span class="time-start">15:40</span><span class="time-end">16:05</span></div>
+                    <div class="content-col">
+                        <div class="tag tag-conf">Conferencia 11</div>
+                        <div class="conf-tema">Enfoque médico de la hemorragia obstétrica</div>
+                        <div class="conf-ponente">Dr. Ignacio Rodríguez Guevara</div>
+                        <div class="conf-inst">Anestesiología y Medicina Crítica · Hospital General San Juan del Río</div>
+                    </div>
+                </div>
+
+                <div class="row row-break">
+                    <div class="time-col"><span class="time-start">16:05</span><span class="time-end">16:35</span></div>
+                    <div class="content-col">
+                        <div class="special-content">
+                            <div>
+                                <div class="tag tag-break">Coffee break</div>
+                                <div class="special-label">Segundo receso</div>
+                                <div class="special-sub">30 min</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="time-col"><span class="time-start">16:35</span><span class="time-end">17:00</span></div>
+                    <div class="content-col">
+                        <div class="tag tag-conf">Conferencia 12</div>
+                        <div class="conf-tema">Coagulopatía obstétrica aguda</div>
+                        <div class="conf-ponente">Dr. Samuel Vargas Trujillo</div>
+                        <div class="conf-inst">Hematología · Medicina Crítica · INPer</div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="time-col"><span class="time-start">17:00</span><span class="time-end">17:25</span></div>
+                    <div class="content-col">
+                        <div class="tag tag-conf">Conferencia 13</div>
+                        <div class="conf-tema">Trauma en la embarazada</div>
+                        <div class="conf-ponente">Dr. Javier Edmundo Herrera Villalobos</div>
+                        <div class="conf-inst">Ginecología · Medicina Crítica Obstétrica · UAEMéx / IMIEM</div>
+                    </div>
+                </div>
+
+                <div class="row row-especial">
+                    <div class="time-col"><span class="time-start">17:25</span><span class="time-end">17:40</span></div>
+                    <div class="content-col">
+                        <div class="special-content">
+                            <div>
+                                <div class="tag tag-especial">Clausura</div>
+                                <div class="special-label">Ceremonia de clausura y entrega de constancias</div>
+                                <div class="special-sub">15 min · Fin del simposio</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Día 2 (talleres) - puedes editar estos contenidos después -->
+            <div id="day2" class="tab-pane">
+                <div class="row">
+                    <div class="time-col"><span class="time-start">09:00</span><span class="time-end">11:00</span></div>
+                    <div class="content-col">
+                        <div class="tag tag-conf">Taller 1</div>
+                        <div class="conf-tema">Ventilación mecánica en obstetricia crítica</div>
+                        <div class="conf-ponente">Dr. Ernesto Deloya Tomás</div>
+                        <div class="conf-inst">Medicina Crítica · Hospital General San Juan del Río</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="time-col"><span class="time-start">11:30</span><span class="time-end">13:30</span></div>
+                    <div class="content-col">
+                        <div class="tag tag-conf">Taller 2</div>
+                        <div class="conf-tema">Manejo quirúrgico de la hemorragia obstétrica</div>
+                        <div class="conf-ponente">Dr. Gonzalo Pérez Barrera</div>
+                        <div class="conf-inst">Ginecología · Hospital General San Juan del Río</div>
+                    </div>
+                </div>
+                <div class="row row-comida">
+                    <div class="time-col"><span class="time-start">13:30</span><span class="time-end">15:00</span></div>
+                    <div class="content-col">
+                        <div class="special-content">
+                            <div>
+                                <div class="tag tag-comida">Comida</div>
+                                <div class="special-label">Receso</div>
+                                <div class="special-sub">1.5 horas</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="time-col"><span class="time-start">15:00</span><span class="time-end">17:00</span></div>
+                    <div class="content-col">
+                        <div class="tag tag-conf">Taller 3</div>
+                        <div class="conf-tema">Simulación de crisis obstétrica</div>
+                        <div class="conf-ponente">Dr. Christian Herrera Venegas</div>
+                        <div class="conf-inst">Ginecología y Obstetricia · UAdeC / UAEMéx</div>
+                    </div>
+                </div>
+                <div class="row row-especial">
+                    <div class="time-col"><span class="time-start">17:00</span><span class="time-end">17:30</span></div>
+                    <div class="content-col">
+                        <div class="special-content">
+                            <div>
+                                <div class="tag tag-especial">Clausura</div>
+                                <div class="special-label">Entrega de constancias</div>
+                                <div class="special-sub">30 min</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const tabs = document.querySelectorAll('.tab-btn');
+    const panes = {
+        day1: document.getElementById('day1'),
+        day2: document.getElementById('day2')
+    };
+    tabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const target = btn.dataset.tab;
+            tabs.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            Object.values(panes).forEach(pane => pane.classList.remove('active'));
+            panes[target].classList.add('active');
+        });
+    });
+</script>
+{% endblock %}

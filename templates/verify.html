@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificación de acceso - Clinical Care Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="max-w-lg mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+        <h1 class="text-2xl font-bold text-indigo-600 mb-4">Acceso válido</h1>
+        <p class="mb-2"><strong>Nombre:</strong> {{ info.name }}</p>
+        <p class="mb-2"><strong>Correo:</strong> {{ info.email }}</p>
+        <p class="mb-2"><strong>Rol:</strong> {{ info.role }}</p>
+        <p class="mb-2"><strong>Días seleccionados:</strong>
+            {% if info.days == 'day1' %} Día 1
+                {% if info.day1_virtual %} (Virtual)
+                {% else %} (Presencial)
+                {% endif %}
+            {% elif info.days == 'day2' %} Día 2 (Presencial)
+            {% elif info.days == 'both' %} Ambos días
+                {% if info.day1_virtual %} (Día 1 Virtual, Día 2 Presencial)
+                {% else %} (Ambos presenciales)
+                {% endif %}
+            {% else %} Solo curso
+            {% endif %}
+        </p>
+        <p class="mb-2"><strong>Curso adicional:</strong> {{ 'Sí' if info.course else 'No' }}</p>
+        <p class="mb-2"><strong>Monto pagado:</strong> ${{ "%.2f"|format(info.amount) }} MXN</p>
+        <div class="mt-4 p-4 bg-green-100 text-green-700 rounded">
+            Este código QR es válido para ingreso al evento.
+        </div>
+    </div>
+</body>
+</html>
