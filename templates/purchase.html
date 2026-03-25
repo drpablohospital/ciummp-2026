@@ -64,7 +64,7 @@
             <div>
                 <label class="inline-flex items-center">
                     <input type="checkbox" name="course" value="course" id="courseCheckbox">
-                    <span class="ml-2">Curso de Fisioterapia (adicional, $6 MXN)</span>
+                    <span class="ml-2">Curso de Fisioterapia (adicional, $600 MXN)</span>
                 </label>
             </div>
 
@@ -97,18 +97,18 @@
 <script>
     // Precios base (en centavos)
     const PRECIOS_BASE = {
-        'day1_presencial': 1000,   // 10 pesos
-        'day1_virtual': 700,       // 7 pesos
-        'day2': 800,               // 8 pesos
-        'course': 600              // 6 pesos
+        'day1_presencial': 200000,   // 10 pesos
+        'day1_virtual': 100000,       // 7 pesos
+        'day2': 225000,               // 8 pesos
+        'course': 60000              // 6 pesos
     };
 
     // Factor de descuento por perfil (especialista 1.0, otros 0.7)
     const DESCUENTO_PERFIL = {
         'specialist': 1.0,
-        'student': 0.7,
+        'student': 0.8,
         'nurse': 0.7,
-        'physio': 0.7
+        'physio': 0.75
     };
 
     // Elementos del DOM
