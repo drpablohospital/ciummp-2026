@@ -287,6 +287,7 @@ def purchase():
                     'quantity': 1,
                 }],
                 mode='payment',
+                allow_promotion_codes=True,
                 success_url=url_for('success', registration_id=reg.id, _external=True),
                 cancel_url=url_for('cancel', _external=True),
                 metadata={
