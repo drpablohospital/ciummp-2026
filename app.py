@@ -87,64 +87,58 @@ Equipo Critical Care Experience
         app.logger.error(f"Error enviando email a {email}: {e}")
 
 def generate_certificate(registration_id):
-    """Genera un PDF tipo credencial con fondo personalizado (1536x2048)."""
+    """Genera un PDF tipo credencial de tamaño estándar (600x900 pt)."""
     reg = Registration.query.get(registration_id)
     if not reg or reg.payment_status != 'paid':
         return None
 
     user = User.query.get(reg.user_id)
 
-    # Ruta de la imagen de fondo
-    bg_path = os.path.join(app.static_folder, 'images', 'credential_bg.webp')
-    if not os.path.exists(bg_path):
-        # fallback a PNG si no existe
-        bg_path = os.path.join(app.static_folder, 'images', 'credential_bg.png')
-
-    # Dimensiones de la imagen (asumimos 1536x2048, pero las obtendremos de la imagen real)
-    try:
-        img = Image.open(bg_path)
-        img_width, img_height = img.size
-    except Exception:
-        # Si no se puede abrir la imagen, usar dimensiones por defecto
-        img_width, img_height = 1536, 2048
-
-    # Crear canvas con las mismas dimensiones (en puntos, 1 pixel = 1 punto a 72 DPI)
-    width, height = img_width, img_height
+    # Dimensiones del canvas (tamaño de ID vertical, aprox 8.3cm x 12.5cm)
+    width, height = 600, 900  # puntos
     buffer = io.BytesIO()
     c = canvas.Canvas(buffer, pagesize=(width, height))
 
-    # Dibujar fondo
-    c.drawImage(bg_path, 0, 0, width=width, height=height, preserveAspectRatio=True, anchor='c')
+    # Cargar imagen de fondo
+    bg_path = os.path.join(app.static_folder, 'images', 'credential_bg.webp')
+    if not os.path.exists(bg_path):
+        bg_path = os.path.join(app.static_folder, 'images', 'credential_bg.png')
 
-    # Definir posiciones como porcentajes relativos al tamaño de la imagen
-    # Ajusta estos valores según el diseño de tu fondo
-    name_x = width * 0.15
-    name_y = height * 0.7
-    role_x = width * 0.15
-    role_y = height * 0.63
-    tickets_x = width * 0.15
-    tickets_y = height * 0.53
-    qr_x = width * 0.7
-    qr_y = height * 0.1
-    qr_size = width * 0.2  # 20% del ancho
+    # Escalar la imagen de fondo para que ocupe todo el canvas
+    try:
+        from reportlab.lib.utils import ImageReader
+        bg_img = ImageReader(bg_path)
+        c.drawImage(bg_img, 0, 0, width=width, height=height, preserveAspectRatio=False)
+    except Exception:
+        # Si no hay fondo, usar un color de respaldo
+        c.setFillColorRGB(0.95, 0.95, 0.95)
+        c.rect(0, 0, width, height, fill=1)
 
-    # Configurar fuente (tamaño relativo al ancho de la imagen)
-    c.setFont("Helvetica-Bold", width * 0.025)
+    # Configurar fuente
+    c.setFont("Helvetica-Bold", 14)
     c.setFillColorRGB(0, 0, 0)
 
+    # Coordenadas relativas (ajusta según el diseño de tu fondo)
+    name_y = height - 180
+    role_y = name_y - 40
+    items_y = role_y - 50
+    qr_size = 150
+    qr_x = width - qr_size - 20
+    qr_y = 20
+
     # Nombre
-    c.drawString(name_x, name_y, f"Nombre: {user.name}")
+    c.drawString(40, name_y, f"Nombre: {user.name}")
 
     # Rol
     role_str = {
         "specialist": "Especialista",
-        "student": "Estudiante",
+        "student": "Residente",
         "nurse": "Enfermero/a",
         "physio": "Fisioterapeuta"
     }.get(user.role, user.role)
-    c.drawString(role_x, role_y, f"Rol: {role_str}")
+    c.drawString(40, role_y, f"Rol: {role_str}")
 
-    # Lista de eventos pagados
+    # Eventos incluidos
     items = []
     if reg.days == "day1":
         modality = "Virtual" if reg.day1_virtual else "Presencial"
@@ -159,14 +153,18 @@ def generate_certificate(registration_id):
         items.append("Curso de Fisioterapia")
 
     if items:
-        c.setFont("Helvetica", width * 0.02)
-        c.drawString(tickets_x, tickets_y, "Eventos incluidos:")
-        y_offset = tickets_y - (height * 0.04)
+        c.setFont("Helvetica", 10)
+        c.drawString(40, items_y, "Incluye:")
+        y_offset = items_y - 20
         for item in items:
-            c.drawString(tickets_x, y_offset, item)
-            y_offset -= height * 0.03
+            c.drawString(40, y_offset, f"• {item}")
+            y_offset -= 15
 
-    # Insertar código QR
+    # Fecha del evento
+    c.setFont("Helvetica", 8)
+    c.drawString(40, 50, "1 y 2 de mayo 2026 · Hospital General de San Juan del Río")
+
+    # Insertar QR
     if reg.qr_code_path:
         qr_full_path = os.path.join(app.root_path, reg.qr_code_path)
         if os.path.exists(qr_full_path):
