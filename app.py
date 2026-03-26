@@ -202,10 +202,10 @@ def purchase():
         day1_virtual = request.form.get('day1_modality') == 'virtual' if day1 else False
 
         PRICES = {
-            'day1_presencial': 1000,   # 10 pesos
-            'day1_virtual': 700,       # 7 pesos
-            'day2': 800,               # 8 pesos
-            'course': 600              # 6 pesos
+            'day1_presencial': 200000,
+            'day1_virtual': 100000,
+            'day2': 225000,
+            'course': 60000
         }
 
         discount = 1.0 if role == 'specialist' else 0.7
