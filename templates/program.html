@@ -12,7 +12,7 @@
 
   *{box-sizing:border-box;margin:0;padding:0;}
   .prog{font-family:'Nunito',sans-serif;padding:1.5rem 0;max-width:780px;margin:0 auto;}
-  .prog-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:2px solid var(--color-primary);gap:1rem;}
+  .prog-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:2px solid var(--color-primary);gap:1rem;flex-wrap:wrap;}
   .brand-left .cc{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--color-text-primary);letter-spacing:2px;line-height:1;}
   .brand-left .exp{font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--color-primary);letter-spacing:2px;line-height:1;}
   .brand-left .ed{font-size:10px;font-weight:700;color:var(--color-text-secondary);letter-spacing:3px;text-transform:uppercase;margin-top:3px;}
@@ -27,6 +27,7 @@
     justify-content: center;
     gap: 1rem;
     margin-bottom: 2rem;
+    flex-wrap: wrap;
   }
   .tab-btn {
     background: #e2e8f0;
@@ -93,6 +94,88 @@
   .card-nombre{font-size:14px;font-weight:700;color:var(--color-text-primary);line-height:1.4;margin-bottom:8px;}
   .card-desc{font-size:12px;color:var(--color-text-secondary);line-height:1.6;flex:1;}
   .excl-badge{display:inline-block;background:#FBEAF0;color:#72243E;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:0.5px;text-transform:uppercase;margin-top:10px;align-self:flex-start;}
+
+  /* ----- MEDIA QUERIES PARA MÓVIL ----- */
+  @media (max-width: 768px) {
+    .prog {
+      padding: 0.5rem;
+    }
+    .prog-header {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .brand-right {
+      text-align: center;
+    }
+    .tab-btn {
+      padding: 0.4rem 1rem;
+      font-size: 0.8rem;
+    }
+    .two-col {
+      grid-template-columns: 1fr;
+    }
+    .col {
+      border-right: none;
+      border-bottom: 0.5px solid var(--color-border-tertiary);
+    }
+    .col:last-child {
+      border-bottom: none;
+    }
+    .row {
+      grid-template-columns: 70px 1fr;
+    }
+    .time-start {
+      font-size: 11px;
+    }
+    .time-end {
+      font-size: 9px;
+    }
+    .conf-tema {
+      font-size: 12px;
+    }
+    .conf-ponente {
+      font-size: 11px;
+    }
+    .conf-inst {
+      font-size: 10px;
+    }
+    .special-label {
+      font-size: 12px;
+    }
+    .special-sub {
+      font-size: 10px;
+    }
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    .card {
+      border-right: none;
+      border-bottom: 0.5px solid var(--color-border-tertiary);
+    }
+    .card:nth-child(3n) {
+      border-right: none;
+    }
+    .card:last-child {
+      border-bottom: none;
+    }
+    .footer-row {
+      flex-direction: column;
+      text-align: center;
+    }
+    .footer-info {
+      text-align: center;
+    }
+    .flex.justify-center.gap-4 {
+      flex-direction: column;
+      gap: 0.75rem;
+      align-items: stretch;
+    }
+    .btn-primary {
+      text-align: center;
+      justify-content: center;
+    }
+  }
 </style>
 {% endblock %}
 
@@ -341,7 +424,7 @@
                     <div class="card">
                         <div class="card-num">Taller 05</div>
                         <div class="card-nombre">Ecografía en la embarazada crítica</div>
-                        <div class="card-desc">Cuando el tiempo es limitado, la ecografía marca la diferencia. Aprende a identificar en segundos lo que pone en riesgo a la paciente obstrtrica: Falla cardíaca, líquido libre, derrame pleural y estado fetal. Convierte el ultrasonido en tu mejor aliado para actuar rápido, seguro y con fundamento.</div>
+                        <div class="card-desc">Cuando el tiempo es limitado, la ecografía marca la diferencia. Aprende a identificar en segundos lo que pone en riesgo a la paciente obstétrica: falla cardíaca, líquido libre, derrame pleural y estado fetal. Convierte el ultrasonido en tu mejor aliado para actuar rápido, seguro y con fundamento.</div>
                     </div>
 
                     <div class="card">
@@ -360,7 +443,7 @@
         </div>
 
         <!-- Botones para descargar las imágenes del programa -->
-        <div class="flex justify-center gap-4 mt-8">
+        <div class="flex justify-center gap-4 mt-8 flex-wrap">
             <a href="{{ url_for('static', filename='images/cce_programa_d1.png') }}" download="cce_programa_d1.png" class="btn-primary inline-flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
