@@ -14,10 +14,11 @@ class User(db.Model):
 class Registration(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    ticket_type = db.Column(db.String(20), nullable=False)   # "days" o "course"
+    ticket_type = db.Column(db.String(20), nullable=False)   # "general" o "taller"
     days = db.Column(db.String(20))   # "day1", "day2", "both"
     day1_virtual = db.Column(db.Boolean, default=False)
     course = db.Column(db.Boolean, default=False)
+    talleres = db.Column(db.String(200))  # JSON con IDs de talleres seleccionados
     amount = db.Column(db.Integer, nullable=False)
     stripe_checkout_id = db.Column(db.String(100))
     payment_status = db.Column(db.String(20), default='pending')

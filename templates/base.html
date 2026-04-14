@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Critical Care Experience</title>
+    <title>CIUMMP 2026</title>
 
     <!-- ========== METAETIQUETAS PARA VISTA PREVIA EN REDES SOCIALES ========== -->
-    <meta property="og:title" content="Critical Care Experience - 2.ª edición">
-    <meta property="og:description" content="Simposio de Obstetricia Crítica. Conferencias y talleres con expertos nacionales. ¡Cupo limitado!">
+    <meta property="og:title" content="CIUMMP 2026 - Congreso Integral de Urgencias Médicas y Medicina Prehospitalaria">
+    <meta property="og:description" content="Congreso Integral de Urgencias Médicas y Medicina Prehospitalaria. Conferencias y talleres con expertos nacionales. 23 y 24 de octubre 2026. Hospital Marina Mazatlán.">
     <meta property="og:image" content="{{ url_for('static', filename='images/logo.webp', _external=True) }}">
     <meta property="og:url" content="{{ request.url }}">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Critical Care Experience">
+    <meta property="og:site_name" content="CIUMMP 2026">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Critical Care Experience - 2.ª edición">
-    <meta name="twitter:description" content="Simposio de Obstetricia Crítica. Conferencias y talleres con expertos nacionales. ¡Cupo limitado!">
+    <meta name="twitter:title" content="CIUMMP 2026 - Congreso Integral de Urgencias Médicas y Medicina Prehospitalaria">
+    <meta name="twitter:description" content="Congreso Integral de Urgencias Médicas y Medicina Prehospitalaria. Conferencias y talleres con expertos nacionales.">
     <meta name="twitter:image" content="{{ url_for('static', filename='images/logo.webp', _external=True) }}">
     <!-- ========================================================================= -->
 
@@ -22,17 +22,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --color-text-primary: #1e2a3e;
+            --color-navy: #1e3a5f;
+            --color-hospital: #2c5282;
+            --color-turquoise: #319795;
+            --color-sand: #d4c4a8;
+            --color-white: #ffffff;
+            --color-text-primary: #1e3a5f;
             --color-text-secondary: #4a5b6e;
             --color-border-tertiary: #e2e8f0;
-            --color-primary: #7f326e;
-            --color-primary-dark: #42134e;
-            --color-secondary: #c8d4a0;
-            --color-accent: #e75180;
-            --color-purple-light: #b28cd1;
-            --color-purple-dark: #a463a5;
-            --color-pink: #bf437b;
-            --color-gray: #ab869f;
         }
         body {
             font-family: 'Nunito', sans-serif;
@@ -45,14 +42,15 @@
             transition: all 0.2s ease;
         }
         .glass-card {
-            background-color: rgba(255, 255, 255, 0.85);
+            background-color: rgba(255, 255, 255, 0.90);
             backdrop-filter: blur(8px);
             border-radius: 1rem;
             padding: 2rem;
             box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.5);
         }
         .btn-primary {
-            background-color: var(--color-primary);
+            background-color: var(--color-navy);
             color: white;
             padding: 0.5rem 1.5rem;
             border-radius: 0.5rem;
@@ -62,12 +60,12 @@
             cursor: pointer;
         }
         .btn-primary:hover {
-            background-color: var(--color-primary-dark);
+            background-color: var(--color-hospital);
             transform: translateY(-1px);
         }
         .btn-outline {
-            border: 2px solid var(--color-primary);
-            color: var(--color-primary);
+            border: 2px solid var(--color-navy);
+            color: var(--color-navy);
             background-color: transparent;
             padding: 0.5rem 1.5rem;
             border-radius: 0.5rem;
@@ -77,16 +75,16 @@
             cursor: pointer;
         }
         .btn-outline:hover {
-            background-color: var(--color-primary);
+            background-color: var(--color-navy);
             color: white;
         }
         .nav-link {
-            color: #4b5563;
+            color: var(--color-text-secondary);
             transition: color 0.2s;
             font-weight: 500;
         }
         .nav-link:hover {
-            color: var(--color-primary);
+            color: var(--color-navy);
         }
         /* Estilos del modal */
         .modal {
@@ -119,7 +117,7 @@
         }
         .close-modal {
             margin-top: 1rem;
-            background-color: var(--color-primary);
+            background-color: var(--color-navy);
             color: white;
             padding: 0.75rem 2rem;
             border-radius: 2rem;
@@ -130,14 +128,14 @@
             font-size: 1.1rem;
         }
         .close-modal:hover {
-            background-color: var(--color-primary-dark);
+            background-color: var(--color-hospital);
         }
         /* Botón flotante de chat */
         .chat-button {
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            background-color: var(--color-primary);
+            background-color: var(--color-navy);
             color: white;
             width: 60px;
             height: 60px;
@@ -151,7 +149,7 @@
             z-index: 1000;
         }
         .chat-button:hover {
-            background-color: var(--color-primary-dark);
+            background-color: var(--color-hospital);
             transform: scale(1.05);
         }
         /* Modal del chat */
@@ -196,6 +194,12 @@
         .modal-overlay.active {
             display: block;
         }
+        .navbar-logo {
+            color: var(--color-navy);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
     </style>
     {% block head %}{% endblock %}
 </head>
@@ -204,7 +208,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
                 <div class="flex items-center space-x-2">
-                    <img src="{{ url_for('static', filename='images/logo.webp') }}" alt="Critical Care Experience" class="h-12 w-auto">
+                    <img src="{{ url_for('static', filename='images/logo.webp') }}" alt="CIUMMP 2026" class="h-12 w-auto">
+                    <span class="navbar-logo">CIUMMP 2026</span>
                 </div>
                 <div class="flex space-x-6 items-center">
                     <a href="/" class="nav-link">Home</a>
@@ -232,12 +237,27 @@
         {% block content %}{% endblock %}
     </main>
 
-    <footer class="bg-white/80 backdrop-blur-sm border-t mt-12">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm">
-            <div class="flex justify-center items-center space-x-4 mb-2">
-                <img src="{{ url_for('static', filename='images/logo_blue.webp') }}" alt="Sponsor" class="h-8 w-auto">
-                <span>|</span>
-                <span>© 2026 Critical Care Experience. Todos los derechos reservados.</span>
+    <footer class="bg-[#1e3a5f]/95 backdrop-blur-sm text-white border-t mt-12">
+        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 text-sm">
+                <div>
+                    <h4 class="font-bold text-lg mb-2" style="color: #319795;">CIUMMP 2026</h4>
+                    <p class="text-gray-300">Congreso Integral de Urgencias Médicas y Medicina Prehospitalaria</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-2" style="color: #319795;">Sede</h4>
+                    <p class="text-gray-300">Hospital Marina Mazatlán</p>
+                    <p class="text-gray-300">Mazatlán, Sinaloa</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-2" style="color: #319795;">Contacto</h4>
+                    <p class="text-gray-300">📧 investigacionhmm@gmail.com</p>
+                    <p class="text-gray-300">📱 +52 669 278 2010</p>
+                    <p class="text-gray-300">📱 +52 720 294 5855</p>
+                </div>
+            </div>
+            <div class="mt-8 pt-4 border-t border-white/20 text-center text-gray-400 text-xs">
+                © 2026 CIUMMP. Todos los derechos reservados.
             </div>
         </div>
     </footer>

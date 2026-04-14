@@ -25,7 +25,7 @@ db.init_app(app)
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'medicinacriticasjdr@gmail.com'
+app.config['MAIL_USERNAME'] = 'investigacionhmm@gmail.com'
 app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
 mail = Mail(app)
 
@@ -75,19 +75,19 @@ def generate_qr(registration_id):
 
 def send_virtual_instructions(email, name):
     """Envía correo con instrucciones para el acceso virtual."""
-    msg = Message('Instrucciones para acceso virtual - Critical Care Experience',
+    msg = Message('Instrucciones para acceso virtual - CIUMMP 2026',
                   sender=app.config['MAIL_USERNAME'],
                   recipients=[email])
     msg.body = f"""
 Hola {name},
 
-Gracias por registrarte al Critical Care Experience.
+Gracias por registrarte al CIUMMP 2026.
 
 Has seleccionado la modalidad VIRTUAL para el Día 1. El acceso a la transmisión en vivo será a través de la siguiente plataforma:
 
 [Enlace de Zoom/YouTube]
 
-Fecha: 1 de mayo 2026
+Fecha: 23 de octubre 2026
 Horario: 8:30 - 17:40
 
 Recuerda que tu código QR es tu credencial digital; lo necesitarás para acceder al evento virtual.
@@ -95,7 +95,7 @@ Recuerda que tu código QR es tu credencial digital; lo necesitarás para accede
 Si tienes dudas, responde a este correo.
 
 ¡Te esperamos!
-Equipo Critical Care Experience
+Equipo CIUMMP 2026
 """
     try:
         mail.send(msg)
@@ -178,7 +178,7 @@ def generate_certificate(registration_id):
 
     # Fecha del evento
     c.setFont("Helvetica", 8)
-    c.drawString(40, 50, "1 y 2 de mayo 2026 · Hospital General de San Juan del Río")
+    c.drawString(40, 50, "23 y 24 de octubre 2026 · Hospital Marina Mazatlán")
 
     # Insertar QR
     if reg.qr_code_path:
@@ -210,54 +210,25 @@ def purchase():
         name = request.form['name']
         email = request.form['email']
         role = request.form['role']
-        day1 = 'day1' in request.form
-        day2 = 'day2' in request.form
-        course = 'course' in request.form
-        day1_virtual = request.form.get('day1_modality') == 'virtual' if day1 else False
-
+        
+        # Obtener talleres seleccionados
+        talleres_seleccionados = request.form.getlist('talleres')
+        
         PRICES = {
-            'day1_presencial': 200000,
-            'day1_virtual': 100000,
-            'day2': 225000,
-            'course': 60000
+            'general': 120000,   # $1200 MXN
+            'taller': 25000      # $250 MXN por taller
         }
 
-        # Factores de descuento por perfil (coinciden con frontend)
-        DISCOUNT_FACTORS = {
-            'specialist': 1.0,
-            'student': 0.8,    # Residente: 20% descuento
-            'nurse': 0.7,      # Enfermero: 30% descuento
-            'physio': 0.75     # Fisioterapeuta: 25% descuento
-        }
-        discount = DISCOUNT_FACTORS.get(role, 1.0)
+        # Calcular monto total
+        amount = PRICES['general']  # Boleto general obligatorio
+        
+        # Agregar costo de talleres
+        if talleres_seleccionados:
+            amount += len(talleres_seleccionados) * PRICES['taller']
 
-        amount = 0
-        days_selected = None
-
-        if day1 and day2:
-            days_selected = "both"
-            day1_price = PRICES['day1_virtual'] if day1_virtual else PRICES['day1_presencial']
-            amount = day1_price + PRICES['day2']
-        elif day1:
-            days_selected = "day1"
-            amount = PRICES['day1_virtual'] if day1_virtual else PRICES['day1_presencial']
-        elif day2:
-            days_selected = "day2"
-            amount = PRICES['day2']
-        else:
-            days_selected = None
-
-        if days_selected:
-            amount = int(amount * discount)
-
-        if course:
-            amount += PRICES['course']
-
-        if not day1 and not day2 and course:
-            days_selected = None
-            ticket_type = "course"
-        else:
-            ticket_type = "days"
+        ticket_type = "general"
+        days_selected = "both"  # Asistencia a ambos días
+        talleres_json = ','.join(talleres_seleccionados) if talleres_seleccionados else None
 
         user = User.query.filter_by(email=email).first()
         if not user:
@@ -272,8 +243,9 @@ def purchase():
             user_id=user.id,
             ticket_type=ticket_type,
             days=days_selected,
-            day1_virtual=day1_virtual,
-            course=course,
+            day1_virtual=False,
+            course=False,
+            talleres=talleres_json,
             amount=amount,
             payment_status='pending'
         )
@@ -288,7 +260,7 @@ def purchase():
                         'currency': 'mxn',
                         'unit_amount': amount,
                         'product_data': {
-                            'name': f'Critical Care Experience',
+                            'name': f'CIUMMP 2026',
                         },
                     },
                     'quantity': 1,
@@ -387,14 +359,14 @@ def verify(registration_id):
     if reg.payment_status != 'paid':
         return "Acceso no autorizado", 403
     user = User.query.get(reg.user_id)
+    talleres_str = reg.talleres if hasattr(reg, 'talleres') and reg.talleres else None
     info = {
         'name': user.name,
         'email': user.email,
         'role': user.role,
         'ticket_type': reg.ticket_type,
         'days': reg.days,
-        'day1_virtual': reg.day1_virtual,
-        'course': reg.course,
+        'talleres': talleres_str,
         'amount': reg.amount / 100
     }
     return render_template('verify.html', info=info, registration=reg, background_image=get_random_background())
@@ -411,9 +383,9 @@ def contact():
     db.session.commit()
 
     try:
-        msg = Message('Nuevo mensaje desde Critical Care Experience',
+        msg = Message('Nuevo mensaje desde CIUMMP 2026',
                       sender=app.config['MAIL_USERNAME'],
-                      recipients=['medicinacriticasjdr@gmail.com'])
+                      recipients=['investigacionhmm@gmail.com'])
         msg.body = f"""
         Nombre: {nombre}
         Teléfono: {telefono}

@@ -5,16 +5,19 @@
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;500;600;700&display=swap');
 
   :root {
-    --color-text-primary: #1e2a3e;
+    --color-navy: #1e3a5f;
+    --color-hospital: #2c5282;
+    --color-turquoise: #319795;
+    --color-text-primary: #1e3a5f;
     --color-text-secondary: #4a5b6e;
     --color-border-tertiary: #e2e8f0;
   }
 
   *{box-sizing:border-box;margin:0;padding:0;}
   .prog{font-family:'Nunito',sans-serif;padding:1.5rem 0;max-width:780px;margin:0 auto;}
-  .prog-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:2px solid var(--color-primary);gap:1rem;flex-wrap:wrap;}
+  .prog-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:2px solid var(--color-navy);gap:1rem;flex-wrap:wrap;}
   .brand-left .cc{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--color-text-primary);letter-spacing:2px;line-height:1;}
-  .brand-left .exp{font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--color-primary);letter-spacing:2px;line-height:1;}
+  .brand-left .exp{font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--color-navy);letter-spacing:2px;line-height:1;}
   .brand-left .ed{font-size:10px;font-weight:700;color:var(--color-text-secondary);letter-spacing:3px;text-transform:uppercase;margin-top:3px;}
   .brand-right{text-align:right;}
   .brand-right .fecha{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--color-text-primary);letter-spacing:1px;line-height:1.3;}
@@ -31,7 +34,7 @@
   }
   .tab-btn {
     background: #e2e8f0;
-    color: #1e2a3e;
+    color: #1e3a5f;
     padding: 0.5rem 2rem;
     border-radius: 2rem;
     font-weight: bold;
@@ -39,7 +42,7 @@
     transition: all 0.2s;
   }
   .tab-btn.active {
-    background: var(--color-primary);
+    background: var(--color-navy);
     color: white;
   }
   .tab-pane {
@@ -49,7 +52,7 @@
     display: block;
   }
 
-  /* Estilos comunes para filas (se mantienen para compatibilidad) */
+  /* Estilos comunes para filas */
   .row{display:grid;grid-template-columns:78px 1fr;border-bottom:0.5px solid var(--color-border-tertiary);}
   .row:last-child{border-bottom:none;}
   .time-col{padding:10px 12px 10px 0;display:flex;flex-direction:column;align-items:flex-end;justify-content:flex-start;border-right:2px solid var(--color-border-tertiary);}
@@ -64,16 +67,18 @@
   .tag-break{background:#E1F5EE;color:#085041;}
   .tag-comida{background:#E6F1FB;color:#0C447C;}
   .tag-especial{background:#EEEDFE;color:#3C3489;}
+  .tag-taller{background:#FDF2F8;color:#9D174D;}
   .row-break .time-col{border-right-color:#1D9E75;}
   .row-comida .time-col{border-right-color:#378ADD;}
   .row-especial .time-col{border-right-color:#7F77DD;}
+  .row-taller .time-col{border-right-color:#9D174D;}
   .special-content{display:flex;align-items:center;gap:10px;}
   .special-label{font-size:14px;font-weight:700;color:var(--color-text-primary);}
   .special-sub{font-size:11px;color:var(--color-text-secondary);}
 
   /* Nuevos estilos para Día 1 (dos columnas) */
   .two-col{display:grid;grid-template-columns:1fr 1fr;gap:0;border:0.5px solid var(--color-border-tertiary);border-radius:12px;overflow:hidden;}
-  .col-header{background:var(--color-primary);padding:8px 14px;text-align:center;}
+  .col-header{background:var(--color-navy);padding:8px 14px;text-align:center;}
   .col-header span{font-family:'Bebas Neue',sans-serif;font-size:18px;color:#fff;letter-spacing:2px;}
   .col{border-right:0.5px solid var(--color-border-tertiary);}
   .col:last-child{border-right:none;}
@@ -85,12 +90,12 @@
   .meta-bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;background:#f9fafb;border:0.5px solid var(--color-border-tertiary);border-radius:10px;padding:10px 16px;margin-bottom:1.25rem;}
   .meta-item{font-size:12px;color:var(--color-text-secondary);line-height:1.5;}
   .meta-item b{color:var(--color-text-primary);}
-  .inicio-badge{background:var(--color-primary);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:2px;padding:5px 14px;border-radius:20px;}
-  .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border:0.5px solid var(--color-border-tertiary);border-radius:12px;overflow:hidden;}
+  .inicio-badge{background:var(--color-navy);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:2px;padding:5px 14px;border-radius:20px;}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:0.5px solid var(--color-border-tertiary);border-radius:12px;overflow:hidden;}
   .card{padding:18px 16px;border-right:0.5px solid var(--color-border-tertiary);border-bottom:0.5px solid var(--color-border-tertiary);display:flex;flex-direction:column;}
-  .card:nth-child(3n){border-right:none;}
-  .card:nth-child(4),.card:nth-child(5),.card:nth-child(6){border-bottom:none;}
-  .card-num{font-size:10px;font-weight:700;color:var(--color-primary);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;}
+  .card:nth-child(2n){border-right:none;}
+  .card:nth-child(3),.card:nth-child(4){border-bottom:none;}
+  .card-num{font-size:10px;font-weight:700;color:var(--color-navy);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;}
   .card-nombre{font-size:14px;font-weight:700;color:var(--color-text-primary);line-height:1.4;margin-bottom:8px;}
   .card-desc{font-size:12px;color:var(--color-text-secondary);line-height:1.6;flex:1;}
   .excl-badge{display:inline-block;background:#FBEAF0;color:#72243E;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:0.5px;text-transform:uppercase;margin-top:10px;align-self:flex-start;}
@@ -153,7 +158,7 @@
       border-right: none;
       border-bottom: 0.5px solid var(--color-border-tertiary);
     }
-    .card:nth-child(3n) {
+    .card:nth-child(2n) {
       border-right: none;
     }
     .card:last-child {
@@ -185,13 +190,13 @@
         <div class="prog">
             <div class="prog-header">
                 <div class="brand-left">
-                    <div class="cc">Critical Care</div>
-                    <div class="exp">Experience</div>
-                    <div class="ed">2.ª edición · Obstetricia crítica</div>
+                    <div class="cc">CIUMMP</div>
+                    <div class="exp">2026</div>
+                    <div class="ed">Congreso Integral de Urgencias Médicas y Medicina Prehospitalaria</div>
                 </div>
                 <div class="brand-right">
-                    <div class="fecha">1 y 2 de mayo 2026</div>
-                    <div class="sede">Hospital General de San Juan del Río<br>Querétaro</div>
+                    <div class="fecha">23 y 24 de octubre 2026</div>
+                    <div class="sede">Hospital Marina Mazatlán<br>Sinaloa</div>
                 </div>
             </div>
 
@@ -199,258 +204,246 @@
 
             <!-- Pestañas -->
             <div class="tab-container">
-                <div class="tab-btn active" data-tab="day1">Día 1 – Conferencias</div>
-                <div class="tab-btn" data-tab="day2">Día 2 – Talleres</div>
+                <div class="tab-btn active" data-tab="day1">Día 1 – Viernes 23 Oct</div>
+                <div class="tab-btn" data-tab="day2">Día 2 – Sábado 24 Oct</div>
             </div>
 
-            <!-- Día 1: Conferencias (nuevo diseño en dos columnas) -->
+            <!-- Día 1: Viernes 23 de Octubre -->
             <div id="day1" class="tab-pane active">
+                <div class="text-center mb-4" style="color: #1e3a5f; font-weight: bold;">
+                    Mañana: Talleres | Tarde: Conferencias
+                </div>
+                
                 <div class="two-col">
-                    <!-- Columna Mañana -->
+                    <!-- Columna Mañana - Talleres -->
                     <div class="col">
-                        <div class="col-header"><span>Mañana</span></div>
+                        <div class="col-header"><span>Talleres Mañana</span></div>
 
-                        <div class="row">
-                            <div class="time-col"><span class="time-start">08:00</span><span class="time-end">08:30</span></div>
+                        <div class="row row-taller">
+                            <div class="time-col"><span class="time-start">08:00</span><span class="time-end">10:00</span></div>
                             <div class="content-col">
-                                <div class="tag tag-conf">Conferencia 1</div>
-                                <div class="conf-tema">Código Máter: cuando cada segundo salva una vida</div>
-                                <div class="conf-ponente">Dr. Enrique Adalberto Adaya Leythe</div>
-                                <div class="conf-inst">Especialista en Medicina Crítica Obstétrica, Hospital Materno Infantil del Estado de México</div>
+                                <div class="tag tag-taller">Taller 1</div>
+                                <div class="conf-tema">Ultrasonido en el paciente crítico</div>
+                                <div class="conf-ponente">Práctica hands-on con simuladores</div>
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="time-col"><span class="time-start">08:30</span><span class="time-end">09:00</span></div>
+                        <div class="row row-taller">
+                            <div class="time-col"><span class="time-start">10:00</span><span class="time-end">12:00</span></div>
                             <div class="content-col">
-                                <div class="tag tag-conf">Conferencia 2</div>
-                                <div class="conf-tema">Miocardiopatía en la paciente obstétrica</div>
-                                <div class="conf-ponente">Dra. Laura Belmont Rojo</div>
-                                <div class="conf-inst">Especialista en Cardiología, INPer</div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="time-col"><span class="time-start">09:00</span><span class="time-end">09:30</span></div>
-                            <div class="content-col">
-                                <div class="tag tag-conf">Conferencia 3</div>
-                                <div class="conf-tema">Complicaciones hepáticas en el embarazo</div>
-                                <div class="conf-ponente">Dr. José Antonio Hernández Pacheco</div>
-                                <div class="conf-inst">Especialista en Medicina Interna y Medicina Crítica, INPer</div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="time-col"><span class="time-start">09:30</span><span class="time-end">10:00</span></div>
-                            <div class="content-col">
-                                <div class="tag tag-conf">Conferencia 4</div>
-                                <div class="conf-tema">Preeclampsia: la tormenta silenciosa que hay que detener</div>
-                                <div class="conf-ponente">Dr. Christian Herrera Venegas</div>
-                                <div class="conf-inst">Especialista en Medicina Crítica Obstétrica, Hospital General de Gómez Palacio, Durango</div>
-                            </div>
-                        </div>
-
-                        <div class="row row-especial">
-                            <div class="time-col"><span class="time-start">10:00</span><span class="time-end">11:00</span></div>
-                            <div class="content-col">
-                                <div class="tag tag-especial">Inauguración + Coffee Break</div>
-                                <div class="special-label">Ceremonia oficial de apertura y receso</div>
-                                <div class="special-sub">60 min</div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="time-col"><span class="time-start">11:00</span><span class="time-end">11:30</span></div>
-                            <div class="content-col">
-                                <div class="tag tag-conf">Conferencia 5</div>
-                                <div class="conf-tema">SDRA y ventilación mecánica en el embarazo</div>
-                                <div class="conf-ponente">Dr. Ernesto Deloya Tomás</div>
-                                <div class="conf-inst">Especialista en Medicina de Urgencias y Medicina Crítica, Director del HGSJR</div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="time-col"><span class="time-start">11:30</span><span class="time-end">12:00</span></div>
-                            <div class="content-col">
-                                <div class="tag tag-conf">Conferencia 6</div>
-                                <div class="conf-tema">Enfoque quirúrgico de la hemorragia obstétrica</div>
-                                <div class="conf-ponente">Dr. Gonzalo Pérez Barrera</div>
-                                <div class="conf-inst">Especialista en Ginecología y Obstetricia, HGSJR</div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="time-col"><span class="time-start">12:00</span><span class="time-end">12:30</span></div>
-                            <div class="content-col">
-                                <div class="tag tag-conf">Conferencia 7</div>
-                                <div class="conf-tema">Tromboembolia pulmonar en el embarazo</div>
-                                <div class="conf-ponente">Dr. Freddy Mendoza Hernández</div>
-                                <div class="conf-inst">Especialista en Medicina Crítica Obstétrica, Hospital Materno Infantil, ISSEMYN</div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="time-col"><span class="time-start">12:30</span><span class="time-end">13:00</span></div>
-                            <div class="content-col">
-                                <div class="tag tag-conf">Conferencia 8</div>
-                                <div class="conf-tema">Sepsis en el embarazo</div>
-                                <div class="conf-ponente">Dr. Rafael Reyes Monge</div>
-                                <div class="conf-inst">Especialista en Medicina de Urgencias y Medicina Crítica, Hospital Materno de Morelia</div>
+                                <div class="tag tag-taller">Taller 2</div>
+                                <div class="conf-tema">Accesos ecoguiados</div>
+                                <div class="conf-ponente">Técnica de catéteres venosos centrales</div>
                             </div>
                         </div>
 
                         <div class="row row-comida">
-                            <div class="time-col"><span class="time-start">13:00</span><span class="time-end">14:00</span></div>
+                            <div class="time-col"><span class="time-start">12:00</span><span class="time-end">13:00</span></div>
                             <div class="content-col">
                                 <div class="tag tag-comida">Comida</div>
                                 <div class="special-label">Receso para comida</div>
-                                <div class="special-sub">1 hora</div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Columna Tarde -->
+                    <!-- Columna Tarde - Conferencias -->
                     <div class="col">
-                        <div class="col-header"><span>Tarde</span></div>
+                        <div class="col-header"><span>Conferencias Tarde</span></div>
 
                         <div class="row">
-                            <div class="time-col"><span class="time-start">14:00</span><span class="time-end">14:30</span></div>
+                            <div class="time-col"><span class="time-start">13:00</span><span class="time-end">13:40</span></div>
                             <div class="content-col">
-                                <div class="tag tag-conf">Conferencia 9</div>
-                                <div class="conf-tema">Embolia de líquido amniótico</div>
-                                <div class="conf-ponente">Dr. Miguel Ángel Nares Torices</div>
-                                <div class="conf-inst">Especialista en Medicina Crítica Obstétrica, INPer</div>
+                                <div class="tag tag-conf">Conferencia 1</div>
+                                <div class="conf-tema">Protección pulmonar</div>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="time-col"><span class="time-start">14:30</span><span class="time-end">15:00</span></div>
+                            <div class="time-col"><span class="time-start">13:40</span><span class="time-end">14:20</span></div>
                             <div class="content-col">
-                                <div class="tag tag-conf">Conferencia 10</div>
-                                <div class="conf-tema">Trombosis venosa cerebral en el embarazo</div>
-                                <div class="conf-ponente">Dr. Orlando Rubén Pérez Nieto</div>
-                                <div class="conf-inst">Especialista en Medicina de Urgencias y Medicina Crítica, HGSJR</div>
+                                <div class="tag tag-conf">Conferencia 2</div>
+                                <div class="conf-tema">Oxigenoterapia de alto flujo</div>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="time-col"><span class="time-start">15:00</span><span class="time-end">15:30</span></div>
+                            <div class="time-col"><span class="time-start">14:20</span><span class="time-end">15:00</span></div>
                             <div class="content-col">
-                                <div class="tag tag-conf">Conferencia 11</div>
-                                <div class="conf-tema">Enfoque médico de la hemorragia obstétrica</div>
-                                <div class="conf-ponente">Dr. Ignacio Rodríguez Guevara</div>
-                                <div class="conf-inst">Especialista en Anestesiología y Medicina Crítica, HGSJR</div>
+                                <div class="tag tag-conf">Conferencia 3</div>
+                                <div class="conf-tema">Evento vascular cerebral</div>
                             </div>
                         </div>
 
                         <div class="row row-break">
-                            <div class="time-col"><span class="time-start">15:30</span><span class="time-end">15:45</span></div>
+                            <div class="time-col"><span class="time-start">15:00</span><span class="time-end">15:20</span></div>
                             <div class="content-col">
                                 <div class="tag tag-break">Coffee Break</div>
-                                <div class="special-label">Receso</div>
-                                <div class="special-sub">15 min</div>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="time-col"><span class="time-start">15:45</span><span class="time-end">16:15</span></div>
+                            <div class="time-col"><span class="time-start">15:20</span><span class="time-end">16:00</span></div>
                             <div class="content-col">
-                                <div class="tag tag-conf">Conferencia 12</div>
-                                <div class="conf-tema">Coagulopatía obstétrica aguda</div>
-                                <div class="conf-ponente">Dr. Samuel Vargas Trujillo</div>
-                                <div class="conf-inst">Especialista en Hematología, INPer</div>
+                                <div class="tag tag-conf">Conferencia 4</div>
+                                <div class="conf-tema">Fluidoterapia guiada por objetivos</div>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="time-col"><span class="time-start">16:15</span><span class="time-end">16:45</span></div>
+                            <div class="time-col"><span class="time-start">16:00</span><span class="time-end">16:40</span></div>
                             <div class="content-col">
-                                <div class="tag tag-conf">Conferencia 13</div>
-                                <div class="conf-tema">Trauma en la embarazada</div>
-                                <div class="conf-ponente">Dr. Javier Edmundo Herrera Villalobos</div>
-                                <div class="conf-inst">Especialista en Medicina Crítica Obstétrica, Director del Hospital General Valle de Bravo</div>
+                                <div class="tag tag-conf">Conferencia 5</div>
+                                <div class="conf-tema">Paciente crítico transportado aéreo</div>
                             </div>
                         </div>
 
-                        <div class="row row-especial">
-                            <div class="time-col"><span class="time-start">16:45</span><span class="time-end"></span></div>
+                        <div class="row">
+                            <div class="time-col"><span class="time-start">16:40</span><span class="time-end">17:20</span></div>
                             <div class="content-col">
-                                <div class="tag tag-especial">Clausura</div>
-                                <div class="special-label">Ceremonia de clausura y entrega de constancias</div>
-                                <div class="special-sub">Fin del simposio</div>
+                                <div class="tag tag-conf">Conferencia 6</div>
+                                <div class="conf-tema">SDRA</div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="time-col"><span class="time-start">17:20</span><span class="time-end">18:00</span></div>
+                            <div class="content-col">
+                                <div class="tag tag-conf">Conferencia 7</div>
+                                <div class="conf-tema">Cáncer de mama</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="footer-row">
-                    <div class="footer-info"><span>Teléfono:</span> 442-134-3184 &nbsp;·&nbsp; <span>Correo:</span> medicinacriticasjdr@gmail.com</div>
-                    <div class="footer-info" style="text-align:right;">Avalado por Secretaría de Salud · SESEQ</div>
+                    <div class="footer-info"><span>Contacto:</span> investigacionhmm@gmail.com</div>
+                    <div class="footer-info" style="text-align:right;">Hospital Marina Mazatlán</div>
                 </div>
             </div>
 
-            <!-- Día 2: Talleres (nuevo diseño en cuadrícula) -->
+            <!-- Día 2: Sábado 24 de Octubre -->
             <div id="day2" class="tab-pane">
-                <div class="meta-bar">
-                    <div class="meta-item">Se desarrollarán en <b>módulos simultáneos con rotación</b>,<br>abarcando todos los talleres a lo largo del día. <b>Cupo total: 36 personas.</b></div>
-                    <div class="inicio-badge">Inicio: 09:00 hrs</div>
+                <div class="text-center mb-4" style="color: #1e3a5f; font-weight: bold;">
+                    Mañana: Talleres | Tarde: Conferencias
                 </div>
 
-                <div class="grid">
-                    <div class="card">
-                        <div class="card-num">Taller 01</div>
-                        <div class="card-nombre">RCP en el embarazo</div>
-                        <div class="card-desc">Entrena con simulación de alta fidelidad la reanimación cardiopulmonar adaptada a los cambios fisiológicos del embarazo. Aprende a tomar decisiones críticas en los primeros minutos que marcan la diferencia entre la vida y la muerte de dos pacientes a la vez.</div>
+                <div class="two-col">
+                    <!-- Columna Mañana - Talleres -->
+                    <div class="col">
+                        <div class="col-header"><span>Talleres Mañana</span></div>
+
+                        <div class="row row-taller">
+                            <div class="time-col"><span class="time-start">08:00</span><span class="time-end">10:00</span></div>
+                            <div class="content-col">
+                                <div class="tag tag-taller">Taller 3</div>
+                                <div class="conf-tema">Intubación orotraqueal</div>
+                                <div class="conf-ponente">Manejo avanzado de la vía aérea</div>
+                            </div>
+                        </div>
+
+                        <div class="row row-taller">
+                            <div class="time-col"><span class="time-start">10:00</span><span class="time-end">12:00</span></div>
+                            <div class="content-col">
+                                <div class="tag tag-taller">Taller 4</div>
+                                <div class="conf-tema">RCP</div>
+                                <div class="conf-ponente">Reanimación cardiopulmonar avanzada</div>
+                            </div>
+                        </div>
+
+                        <div class="row row-comida">
+                            <div class="time-col"><span class="time-start">12:00</span><span class="time-end">13:00</span></div>
+                            <div class="content-col">
+                                <div class="tag tag-comida">Comida</div>
+                                <div class="special-label">Receso para comida</div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="card">
-                        <div class="card-num">Taller 02</div>
-                        <div class="card-nombre">Control de hemorragia obstétrica</div>
-                        <div class="card-desc">Domina las técnicas más actuales para contener la hemorragia obstétrica masiva: desde el manejo del balón de Bakri hasta la compresión aórtica y el empaquetamiento pélvico. Práctica hands-on en escenarios de urgencia real.</div>
-                    </div>
+                    <!-- Columna Tarde - Conferencias -->
+                    <div class="col">
+                        <div class="col-header"><span>Conferencias Tarde</span></div>
 
-                    <div class="card">
-                        <div class="card-num">Taller 03</div>
-                        <div class="card-nombre">Manejo de preeclampsia severa — Código Máter</div>
-                        <div class="card-desc">Simulación dinámica del Código Máter: activa protocolos, coordina al equipo multidisciplinario y toma decisiones bajo presión. Un taller inmersivo que transforma el conocimiento teórico en acción clínica inmediata.</div>
-                    </div>
+                        <div class="row">
+                            <div class="time-col"><span class="time-start">13:00</span><span class="time-end">13:40</span></div>
+                            <div class="content-col">
+                                <div class="tag tag-conf">Conferencia 1</div>
+                                <div class="conf-tema">Código Sepsis</div>
+                            </div>
+                        </div>
 
-                    <div class="card">
-                        <div class="card-num">Taller 04</div>
-                        <div class="card-nombre">Ventilación mecánica en obstetricia</div>
-                        <div class="card-desc">Manejo práctico del ventilador en la paciente obstétrica críticamente enferma. Aprende a ajustar parámetros, interpretar curvas y tomar decisiones ventilatorias en escenarios de SDRA, neumonía grave y paro respiratorio durante el embarazo.</div>
-                    </div>
+                        <div class="row">
+                            <div class="time-col"><span class="time-start">13:40</span><span class="time-end">14:20</span></div>
+                            <div class="content-col">
+                                <div class="tag tag-conf">Conferencia 2</div>
+                                <div class="conf-tema">Preeclampsia</div>
+                            </div>
+                        </div>
 
-                    <div class="card">
-                        <div class="card-num">Taller 05</div>
-                        <div class="card-nombre">Ecografía en la embarazada crítica</div>
-                        <div class="card-desc">Cuando el tiempo es limitado, la ecografía marca la diferencia. Aprende a identificar en segundos lo que pone en riesgo a la paciente obstétrica: falla cardíaca, líquido libre, derrame pleural y estado fetal. Convierte el ultrasonido en tu mejor aliado para actuar rápido, seguro y con fundamento.</div>
-                    </div>
+                        <div class="row">
+                            <div class="time-col"><span class="time-start">14:20</span><span class="time-end">15:00</span></div>
+                            <div class="content-col">
+                                <div class="tag tag-conf">Conferencia 3</div>
+                                <div class="conf-tema">Fracturas expuestas</div>
+                            </div>
+                        </div>
 
-                    <div class="card">
-                        <div class="card-num">Taller 06</div>
-                        <div class="card-nombre">Entrenamiento muscular inspiratorio y ejercicio post parto</div>
-                        <div class="card-desc">Taller pionero en México enfocado en la rehabilitación respiratoria y el reacondicionamiento físico de la paciente obstétrica. Aprende protocolos de entrenamiento muscular inspiratorio basados en evidencia para acelerar la recuperación y mejorar la calidad de vida post parto.</div>
-                        <div class="excl-badge">Exclusivo para fisioterapeutas</div>
+                        <div class="row row-break">
+                            <div class="time-col"><span class="time-start">15:00</span><span class="time-end">15:20</span></div>
+                            <div class="content-col">
+                                <div class="tag tag-break">Coffee Break</div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="time-col"><span class="time-start">15:20</span><span class="time-end">16:00</span></div>
+                            <div class="content-col">
+                                <div class="tag tag-conf">Conferencia 4</div>
+                                <div class="conf-tema">TCE (Traumatismo Craneoencefálico)</div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="time-col"><span class="time-start">16:00</span><span class="time-end">16:40</span></div>
+                            <div class="content-col">
+                                <div class="tag tag-conf">Conferencia 5</div>
+                                <div class="conf-tema">Politraumatizado</div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="time-col"><span class="time-start">16:40</span><span class="time-end">17:20</span></div>
+                            <div class="content-col">
+                                <div class="tag tag-conf">Conferencia 6</div>
+                                <div class="conf-tema">Sedación</div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="time-col"><span class="time-start">17:20</span><span class="time-end">18:00</span></div>
+                            <div class="content-col">
+                                <div class="tag tag-conf">Conferencia 7</div>
+                                <div class="conf-tema">Nutrición</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="footer-row">
-                    <div class="footer-info"><span>Correo:</span> medicinacriticasjdr@gmail.com</div>
-                    <div class="footer-info" style="text-align:right;">Avalado por Secretaría de Salud · SESEQ</div>
+                    <div class="footer-info"><span>Contacto:</span> investigacionhmm@gmail.com</div>
+                    <div class="footer-info" style="text-align:right;">Hospital Marina Mazatlán</div>
                 </div>
             </div>
         </div>
 
         <!-- Botones para descargar las imágenes del programa -->
         <div class="flex justify-center gap-4 mt-8 flex-wrap">
-            <a href="{{ url_for('static', filename='images/cce_programa_d1.png') }}" download="cce_programa_d1.png" class="btn-primary inline-flex items-center gap-2">
+            <a href="{{ url_for('static', filename='images/ciummp_programa_d1.png') }}" download="ciummp_programa_d1.png" class="btn-primary inline-flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
                 Descargar programa Día 1
             </a>
-            <a href="{{ url_for('static', filename='images/cce_programa_d2.png') }}" download="cce_programa_d2.png" class="btn-primary inline-flex items-center gap-2">
+            <a href="{{ url_for('static', filename='images/ciummp_programa_d2.png') }}" download="ciummp_programa_d2.png" class="btn-primary inline-flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>

@@ -4,7 +4,7 @@
 <!-- Modal con cartel -->
 <div id="cartelModal" class="modal">
     <div class="modal-content">
-        <img src="{{ url_for('static', filename='images/cartel.png') }}" alt="Cartel del evento">
+        <img src="{{ url_for('static', filename='images/cartel_ciummp_2026.png') }}" alt="Cartel del evento" onerror="this.src='{{ url_for('static', filename='images/cartel.png') }}'">
         <button id="closeModalBtn" class="close-modal">Ver más</button>
     </div>
 </div>
@@ -15,28 +15,37 @@
         <div class="glass-card">
             <!-- Logo grande arriba -->
             <div class="flex justify-center mb-8">
-                <img src="{{ url_for('static', filename='images/logo_blue.webp') }}" alt="Critical Care Experience" class="h-24 md:h-32 w-auto">
+                <img src="{{ url_for('static', filename='images/logo_ciummp.webp') }}" alt="CIUMMP 2026" class="h-24 md:h-32 w-auto" onerror="this.src='{{ url_for('static', filename='images/logo_blue.webp') }}'">
             </div>
 
             <!-- Dos columnas: izquierda texto, derecha carrusel -->
             <div class="grid md:grid-cols-2 gap-8">
                 <!-- Columna izquierda: texto -->
                 <div class="space-y-6">
-                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900">
-                        CCE: Edición Obstetricia Crítica
+                    <h1 class="text-4xl md:text-5xl font-bold" style="color: #1e3a5f;">
+                        CIUMMP 2026
                     </h1>
-                    <p class="text-lg italic text-gray-700">
-                        "La atención crítica de la paciente obstétrica no es solo un desafío médico, es una responsabilidad social. Cada segundo cuenta."
+                    <p class="text-xl font-medium" style="color: #2c5282;">
+                        Congreso Integral de Urgencias Médicas y Medicina Prehospitalaria
                     </p>
-                    <div class="text-gray-600 space-y-4">
+                    <p class="text-lg italic" style="color: #4a5b6e;">
+                        "La atención oportuna en urgencias salva vidas. La excelencia en medicina prehospitalaria marca la diferencia entre la vida y la muerte."
+                    </p>
+                    <div class="space-y-4" style="color: #4a5b6e;">
                         <p>
-                            El <strong>Critical Care Experience</strong> reúne a los más destacados especialistas nacionales en medicina crítica, ginecología y obstetricia. En esta segunda edición, nos enfocamos en la <strong>urgencia obstétrica</strong>, un pilar fundamental para reducir la mortalidad materna en México.
+                            El <strong>CIUMMP 2026</strong> reúne a los más destacados especialistas nacionales en <strong>medicina crítica, urgencias y atención prehospitalaria</strong>. Un evento diseñado para profesionales de la salud que buscan actualizar sus conocimientos en el manejo integral del paciente crítico.
                         </p>
                         <p>
-                            Con ponentes de instituciones como INPer, ISSEMYN, UAEMéx y Hospital General de San Juan del Río, abordaremos temas clave: preeclampsia, hemorragia obstétrica, sepsis, tromboembolia, entre otros.
+                            Con ponentes de instituciones de referencia, abordaremos temas clave: protección pulmonar, oxigenoterapia, evento vascular cerebral, sepsis, SDRA, trauma, intubación, RCP y más. Talleres prácticos con enfoque hands-on.
                         </p>
-                        <p class="font-semibold">
-                            Invitamos a médicos especialistas, residentes, enfermeras y fisioterapeutas a formar parte de este espacio de actualización y networking.
+                        <p>
+                            <strong>Fechas:</strong> 23 y 24 de octubre de 2026
+                        </p>
+                        <p>
+                            <strong>Sede:</strong> Hospital Marina Mazatlán
+                        </p>
+                        <p class="font-semibold" style="color: #1e3a5f;">
+                            Invitamos a médicos especialistas, residentes, enfermeras y paramédicos a formar parte de este espacio de actualización y networking.
                         </p>
                     </div>
                 </div>
@@ -64,10 +73,10 @@
     <!-- Newsletter Signup -->
     <div class="max-w-7xl mx-auto px-4 py-12">
         <div class="glass-card text-center">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">Mantente informado</h2>
-            <p class="text-gray-600 mb-6">Suscríbete para recibir novedades y actualizaciones del programa.</p>
+            <h2 class="text-3xl font-bold mb-4" style="color: #1e3a5f;">Mantente informado</h2>
+            <p class="mb-6" style="color: #4a5b6e;">Suscríbete para recibir novedades y actualizaciones del programa.</p>
             <form action="/subscribe" method="POST" class="max-w-md mx-auto flex gap-2">
-                <input type="email" name="email" required placeholder="Tu correo" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                <input type="email" name="email" required placeholder="Tu correo" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#319795] focus:border-[#319795]">
                 <button type="submit" class="btn-primary">Suscribirse</button>
             </form>
         </div>
